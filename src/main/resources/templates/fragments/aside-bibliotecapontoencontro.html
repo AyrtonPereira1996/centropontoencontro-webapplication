@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<aside th:fragment="aside-bibliotecapontoencontro" class="mt-5">
+		<nav class="sidebar sidebar-open">
+			<ul class="nav nav-pills">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/area/area_biblioteca_ponto_encontro}"><i
+						class="fas fa-home"></i> Home</a></li>
+			</ul>
+
+			<ul class="nav nav-pills d-inline-block">
+				 &nbsp;<span class="text-muted sidebar-heading"><i
+					class="fas fa-angle-right"></i> Área da Biblioteca Ponto de
+					Encontro</span>
+				<li><a href="#consultas-1" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="fas fa-search"></i> Consultar</a>
+					<ul id="consultas-1" class="collapse">
+						<li><a th:href="@{/emprestimo/listar_por_bibliotecario}"><i class="fas fa-book-reader"></i>
+								Empréstimos</a></li>
+						<li><a th:href="@{/devolucao/listar_por_bibliotecario}"><i class="fas fa-paper-plane"></i>
+								Devoluções</a></li>
+						<li><a th:href="@{/livro/listar_por_bibliotecario}"><i class="fas fa-book"></i> Acervo de
+								livros</a></li>
+						<li><a th:href="@{/categorialivro/listar_por_bibliotecario}"><i class="fas fa-book"></i> Categoria de
+								livros</a></li>
+						<li><a th:href="@{/utente/listar_por_bibliotecario}"><i class="fas fa-users"></i> Utentes</a></li>
+						<li><a th:href="@{/instituicaoensino/listar_instituicaoensino_por_bibliotecario}"><i class="fas fa-school"></i>
+								Instituições de ensino</a></li>
+					</ul></li>
+				<li><a href="#cadastros-1" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="far fa-plus-square"></i> Cadastrar</a>
+					<ul id="cadastros-1" class="collapse">
+						<li><a th:href="@{/emprestimo/cadastro_por_bibliotecario}"><i class="fas fa-book-reader"></i>
+								Empréstimo</a></li>
+						<li><a th:href="@{/utente/cadastro_por_bibliotecario}"><i class="fas fa-user-plus"></i> Utente</a></li>
+						<li><a th:href="@{/instituicaoensino/cadastro_instituicao_por_bibliotecario}"><i class="fas fa-school"></i> Instituição
+								de ensino</a></li>
+					</ul></li>
+			</ul>
+
+		</nav>
+	</aside>
+
+</body>
+</html>

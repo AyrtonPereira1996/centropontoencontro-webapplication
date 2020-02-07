@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout_gestor}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Configurações</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Cadastro de usuario de sistema</li>
+
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-book"></i> Cadastro de usuario de sistema
+						</h4>
+
+					</div>
+				</div>
+				<div th:replace="fragments/alerts"></div>
+				<form class="mt-4" th:action="${usuario.id==null} ? @{/usuario/salvar_por_gestor}:@{/usuario/editar_por_gestor}"
+					method="post" th:object="${usuario}">
+
+
+					<div class="form-group row">
+						<label for="txtnome" class="col-form-label">Nome de
+							usuário</label>
+						<div class="col-3 ml-2">
+							<input required="required" type="text" class="form-control" id="txtnome"
+								th:field="*{nomeUsuario}" placeholder="Insira nome de acesso"
+								th:classappend="${#fields.hasErrors('nomeUsuario')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{nomeUsuario}"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="txttipo" class="col-form-label">Tipo de
+							usuário</label>
+						<div class="col-3 ml-4">
+							<select required="required" class="form-control" th:field="*{perfil.id}"
+								th:classappend="${#fields.hasErrors('perfil.id')} ? 'is-invalid'">
+								<option value="" selected="selected">Selecione o tipo
+									de perfil</option>
+								<option value="1">Gestor</option>
+								<option value="2">Coordenador</option>
+								<option value="3">Bibliotecário normal</option>
+								<option value="4">Bibliotecário infantil</option>
+							</select>
+							<div class="invalid-feedback">
+								<span th:errors="*{perfil.id}"> </span>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label for="txtsenha" class="col-form-label">Senha de
+							acesso</label>
+						<div class="col-3 ml-3">
+							<input required="required" type="password" class="form-control" id="txtsenha"
+								th:field="*{senhaUsuario}" placeholder="Insira senha de acesso"
+								th:classappend="${#fields.hasErrors('senhaUsuario')} ? 'is-invalid'">
+
+							<div class="invalid-feedback">
+								<span th:errors="*{senhaUsuario}"></span>
+							</div>
+						</div>
+					</div>
+
+					<!-- 					<div class="form-group row"> -->
+					<!-- 						<label for="txtsenhaconfirmacao">Confirmação senha</label> -->
+					<!-- 						<div class="col-3"> -->
+					<!-- 							<input type="password" class="form-control" id="txtsenhaconfirmacao"> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
+					
+					
+					<input type="hidden" th:field="*{dataRegisto}">
+					<input type="hidden" th:field="*{id}">
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-outline-success">Salvar</button>
+					</div>
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

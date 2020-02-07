@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_gestor}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Área da
+								Biblioteca Ponto de Encontro</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							de categorias de livro</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos de categorias de livro
+				</h4>
+
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista das categorias dos livros<br/>
+				<a th:href="@{/obtercategorialivros_report_gestor/{formato} (formato=pdf)}"><i class="far fa-clipboard"></i> Obter categorias existentes de livros (PDF)</a>
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome da familia</th>
+							<th>Nº CDD</th>
+							<th>Data de registo</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="c:${categorias}">
+							<td th:text="${c.id}">30</td>
+							<td th:text="${c.familia}">Infantil</td>
+							<td th:text="${c.cdd}">340</td>
+							<td th:text="${#temporals.format(c.dataRegisto)}">19/10/2019</td>
+
+						</tr>
+
+					</tbody>
+
+
+				</table>
+
+			</div>
+
+
+		</div>
+	</div>
+
+</body>
+</html>

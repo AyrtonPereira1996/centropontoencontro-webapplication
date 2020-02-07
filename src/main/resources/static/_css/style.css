@@ -1,0 +1,93 @@
+/*main layout*/
+  .layout-main { 
+     display: flex !important; 
+     min-height: calc(100vh - 52px)!important;  
+     overflow: hidden!important;  
+ }
+
+/*Sidebar*/
+ .sidebar {
+    width: 0px;
+    height: 100vh;
+    border-top: 1px solid #eee;
+    border-right: 1px solid rgb(204, 203, 203);    
+    background-color: #f8f9fa;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: width .5s;
+}
+
+.sidebar .nav {
+	margin-bottom: 0px;
+}
+
+.sidebar .nav-item {
+	width: 100%;
+}
+
+.sidebar .nav-item {
+	margin-left: 0;
+}
+
+.sidebar .nav-link {
+	border-radius: 0;
+} 
+
+.sidebar ul li:hover a, .menu ul li.active a{
+    color: #777777;
+}
+
+.sidebar ul{
+    list-style: none;
+    padding: 5px 0px;
+}
+
+.sidebar ul li a{
+    display: block;
+    color:#1a1a1a;
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.sidebar a{
+   margin-left: 2px;
+}
+
+.sidebar.sidebar-open {
+    width: 20rem;
+}
+
+.sidebar-heading{
+    font-size: .90rem;
+    text-transform: uppercase;
+
+}
+
+table{
+  margin: 0 auto;
+  width: 100%;
+  clear: both;
+  border-collapse: collapse;
+  table-layout: fixed; 
+  word-wrap:break-word; 
+}
+
+table{
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #eeeeee;
+  border-radius: 0.25rem;
+}
+

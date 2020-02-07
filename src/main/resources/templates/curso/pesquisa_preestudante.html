@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							de pré-registos estudantes</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos de pré-registos de
+					estudantes
+				</h4>
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista de pré-estudantes registados <br/>
+					<p>
+					<a th:href="@{/preestudante/cadastro}"><i class="fas fa-plus"></i> Novo pré-registo de um estudante</a>
+					&nbsp; | &nbsp; <a th:href="@{/obterpreestudantes_report/{formato} (formato=pdf)}"><i class="far fa-clipboard"></i> Obter relatórios de pré-registos de estudantes (PDF)</a>
+					</p>
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome do Estudante</th>
+							<th>Nome do Curso</th>
+							<th>Respetivos códigos</th>
+							<th>Data de Registo</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="e:${preestudantes}">
+							<td th:text="${e.id}">1</td>
+							<td th:text="${e.utente.nome}">Joana Francisco André</td>
+							<td th:text="${e.curso.nome}">Informática básica</td>
+							<td>
+								<button type="button" data-toggle="popover"
+									data-placement="right" data-container="body"
+									th:attr="data-content=${#strings.concat('Código do utente: ', e.utente.id, '; Código do curso: ', e.curso.id)}"
+									title="Códigos de Identificação"
+									class="btn btn-outline-dark btn-sm">
+									<i class="far fa-eye"></i>
+								</button>
+
+							</td>
+							<td th:text="${#temporals.format(e.dataRegisto)}">20/10/2019</td>
+							<td><a class="btn btn-outline-success btn-sm"
+								th:href="@{/preestudante/confirmar_estudante/{id} (id=${e.id})}"><i
+									class="fas
+                                            fa-check"></i></a>
+								<a class="btn btn-outline-info btn-sm"
+								th:href="@{/preestudante/editar/{id} (id=${e.id})}"><i
+									class="fas fa-pencil-alt"></i></a>
+								<button type="button"
+									th:id="${'btn_preestudante/excluir/' + e.id}"
+									data-toggle="modal" data-target="#modalExclusao"
+									class="btn btn-outline-danger btn-sm" href="#">
+									<i class="fas fa-trash-alt"></i>
+								</button></td>
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+			</div>
+
+
+		</div>
+	</div>
+
+</body>
+</html>

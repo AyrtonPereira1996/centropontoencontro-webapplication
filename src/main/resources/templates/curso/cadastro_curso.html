@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de
+								Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Cadastro de curso</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12">
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-file-alt"></i> Cadastro de curso
+						</h4>
+
+					</div>
+				</div>
+
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${curso.id == null} ? @{/curso/salvar}:@{/curso/editar}"
+					th:object="${curso}" method="post">
+					<div class="form-row">
+						<div class="form-group col-5">
+							<label for="txtnome" class="col-form-label font-weight-bold">Nome
+								do curso</label> <input required="required" type="text" id="txtnome" class="form-control"
+								placeholder="Insira o nome do curso" th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+						<div class="form-group col-7">
+							<label style="" for="txtduracao"
+								class="col-form-label font-weight-bold">Duração do curso</label>
+							<input required="required" type="text" id="txtduracao" class="form-control"
+								placeholder="Insira a duração do curso. Ex: 2 meses, 1/2 mês."
+								th:field="*{duracao}"
+								th:classappend="${#fields.hasErrors('duracao')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{duracao}"></span>
+							</div>
+						</div>
+						<div class="form-group col-5">
+							<label for="txtpreco" class="col-form-label font-weight-bold">Preço
+								do curso</label> <input required="required" type="text" id="txtpreco" class="form-control"
+								placeholder="Insira o preço" th:field="*{preco}"
+								data-mask="#.##0,00" data-mask-reverse="true"
+								th:classappend="${#fields.hasErrors('preco')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{preco}"></span>
+							</div>
+						</div>
+					</div>
+
+					<input type="hidden" th:field="*{id}">
+					<input type="hidden" th:field="*{dataRegisto}">
+					<input type="hidden" th:field="*{numeroAprovacoes}">
+					<input type="hidden" th:field="*{numeroDesistencias}">
+					<input type="hidden" th:field="*{numeroReprovacoes}">
+
+					<div class="form-row">
+						<div class="form-group">
+							<button type="submit" class="btn btn-outline-success btn-block">
+								<i class="far fa-save"></i> Salvar
+							</button>
+						</div>
+					</div>
+
+
+				</form>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+
+</body>
+</html>

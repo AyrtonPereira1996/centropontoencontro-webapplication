@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout_coordenador}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item text-muted"><a th:href="@{#}">Serviço
+								de Cursos</a></li>
+						<li class="breadcrumb-item"><a
+							th:href="@{/resultadoestudantes/consultar_opcoes}"> Consulta
+								de aprovações, reprovações e desistências </a></li>
+						<li class="breadcrumb-item active" aria-current="page">Consulta
+							de estudantes que aprovaram</li>
+					</ol>
+
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos de estudantes que
+					aprovaram
+				</h4>
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista dos utentes que aprovaram</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome do estudante</th>
+							<th>Curso que frequentou</th>
+							<th>Nota de aprovação</th>
+							<th>Comentários</th>
+							<th>Data de aprovação</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="e:${estudanteAprovado}">
+							<td th:text="${e.id}">1</td>
+							<td th:text="${e.utente.nome}">Joaquim Hernesto Silva</td>
+							<td th:text="${e.curso.nome}">Musica</td>
+							<td th:text="${#strings.concat(e.notaFinal, ' Valores')}">16
+								valores</td>
+							<td><button type="button" data-toggle="popover"
+									data-placement="right" data-container="body"
+									th:attr="data-content=${#strings.concat('Comentários:', e.comentario)}"
+									title="Endereço" class="btn btn-sm btn-outline-dark">
+									<i class="far fa-eye"></i>
+								</button></td>
+							<td th:text="${#temporals.format(e.dataAprovacao)}">20/09/2019</td>
+
+
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+
+
+		</div>
+	</div>
+
+</body>
+</html>

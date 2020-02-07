@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_gestor}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item active"><a th:href="@{#}">Serviço
+								de Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							de formadores do centro</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos de formadores do centro
+				</h4>
+
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>
+						Lista de formadores registados<br /> <a
+							th:href="@{/obterformadores_report_gestor/{formato} (formato=pdf)}"><i
+							class="far fa-clipboard"></i> Obter relatório dos
+							formadores do Centro Ponto de Encontro (PDF)</a>
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Género</th>
+							<th>Data de Nascimento</th>
+							<th>Contatos</th>
+							<th>Competências</th>
+							<th>Data de Registo</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="f:${formadores}">
+							<td th:text="${f.id}">1</td>
+							<td th:text="${f.nome}">Joaquim Silva</td>
+							<td th:text="${f.genero}">M</td>
+							<td th:text="${#temporals.format(f.dataRegisto, 'dd/MM/yyyy')}">20/10/2019</td>
+							<td>
+								<button class="btn btn-outline-dark btn-sm"
+									title="Meios de contactos" data-toggle="popover"
+									data-placement="right" data-container="body"
+									th:attr="data-content=${#strings.concat('NºTelemóvel: ', f.contacto, '; E-mail: ', f.email)}">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td>
+								<button class="btn btn-outline-dark btn-sm"
+									title="Competências profissionais" data-toggle="popover"
+									data-placement="right" data-container="body"
+									th:attr="data-content=${#strings.concat('Competências: ', f.competencias)}">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td th:text="${#temporals.format(f.dataRegisto)}">20/10/2019</td>
+
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+
+
+		</div>
+	</div>
+
+</body>
+</html>

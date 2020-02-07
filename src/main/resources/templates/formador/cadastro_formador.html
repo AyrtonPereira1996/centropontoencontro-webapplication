@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de
+								Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Cadastro de formador</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-chalkboard-teacher"></i> Cadastro de Formador
+						</h4>
+
+					</div>
+				</div>
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${formador.id==null} ? @{/formador/salvar}:@{/formador/editar}"
+					th:object="${formador}" method="post">
+					<div class="form-row">
+						<div class="form-group col mr-2">
+							<label for="txtNome" class="col-form-label font-weight-bold">Nome
+								completo do formador</label> <input required="required" type="text" id="txtnome"
+								class="form-control" placeholder="Insira o nome completo"
+								th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
+
+							<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+
+						<div class="form-group ml-2 col-sm-auto">
+							<label for="generoUtente" class="col-form-label font-weight-bold">Género
+								do utente</label> <select required="required" class="form-control" th:field="*{genero}"
+								id="generoUtente">
+								<option value="">Selecione género</option>
+								<option value="M">Masculino</option>
+								<option value="F">Femenino</option>
+
+							</select>
+						</div>
+
+
+					</div>
+					<div class="form-row">
+
+						<div class="form-group mr-2">
+							<label for="txtdatanasc" class="col-form-label font-weight-bold">Data
+								de Nascimento</label> <input required="required" type="date" id="txtdatanasc"
+								class="form-control" th:field="*{dataNascimento}"
+								th:classappend="${#fields.hasErrors('dataNascimento')} ? 'is-invalid'">
+
+							<div class="invalid-feedback">
+								<span th:errors="*{dataNascimento}"></span>
+							</div>
+						</div>
+
+
+
+						<div class="form-group mr-2">
+							<label for="txtcontacto" class="col-form-label font-weight-bold">Contacto</label>
+							<input required="required" type="text" id="txtcontacto" class="form-control"
+								placeholder="Nº telemóvel" th:field="*{contacto}" maxlength="9"
+								th:classappend="${#fields.hasErrors('contacto')} ? 'is-invalid'" />
+							<div class="invalid-feedback">
+								<span th:errors="*{contacto}"></span>
+							</div>
+						</div>
+
+						<div class="form-group col-sm-5">
+							<label for="txtemail"
+								class="col-form-label
+                                            font-weight-bold">E-mail/Endereço
+								Electrónico</label> <input
+								placeholder="Insira o e-mail/endereço electrónico"
+								th:field="*{email}" class="form-control"
+								th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{email}"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="txtcompetencias"
+								class="col-form-label
+                                            font-weight-bold">Competências</label>
+							<textarea id="txtcompetencias" cols="40" rows="4"
+								class="form-control"
+								placeholder="Insira as compêtencias profissionais"
+								th:field="*{competencias}"
+								th:classappend="${#fields.hasErrors('competencias')} ? 'is-invalid'"></textarea>
+							<div class="invalid-feedback">
+								<span th:errors="*{competencias}"></span>
+							</div>
+						</div>
+
+
+
+					</div>
+
+
+
+
+					<div class="form-row"></div>
+
+					<input type="hidden" th:field="*{id}"> <input type="hidden"
+						th:field="*{dataRegisto}">
+					<div class="form-row">
+						<div class="form-group">
+							<button type="submit" class="btn btn-outline-success ">
+								<i class="far fa-save"></i> Salvar
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>

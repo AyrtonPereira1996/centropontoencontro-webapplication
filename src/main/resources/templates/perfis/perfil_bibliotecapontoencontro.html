@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout_biblioteca}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item active" aria-current="page">/ Home</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+
+			<div class="col-sm-4 m-auto mt-n1">
+				<div class="card card-stats">
+					<div
+						class="card-header card-header-warning
+                                card-header-icon">
+						<div class="card-icon">
+							<i class="fas fa-users fa-2x"></i>
+						</div>
+						<p class="card-category">Utentes</p>
+						<h3 class="card-title" th:text="${totalUtentes}"></h3>
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/utente/listar_por_bibliotecario}">Visualizar
+							registos</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4 m-auto">
+				<div class="card card-stats">
+					<div
+						class="card-header card-header-warning
+                                card-header-icon">
+						<div class="card-icon">
+							<i class="fas fa-book fa-2x"></i>
+						</div>
+						<p class="card-category">Livros</p>
+						<h3 class="card-title" th:text="${totalLivros}"></h3>
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/livro/listar_por_bibliotecario}">Visualizar
+							registos</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4 m-auto">
+				<div class="card card-stats">
+					<div
+						class="card-header card-header-warning
+                                    card-header-icon">
+						<div class="card-icon">
+							<i class="fas fa-chalkboard-teacher fa-2x"></i>
+						</div>
+						<p class="card-category">Empréstimos em tempo real</p>
+						<h3 class="card-title" th:text="${totalEmprestimo}"></h3>
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/emprestimo/listar_por_bibliotecario}">Visualizar
+							registos</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row justify-content-center my-2">
+			<div class="col-sm-4 m-auto mt-n1">
+				<div class="card card-stats">
+					<div
+						class="card-header card-header-warning
+                                card-header-icon">
+						<div class="card-icon">
+							<i class="fas fa-users fa-2x"></i>
+						</div>
+						<p class="card-category">Devoluções</p>
+						<h3 class="card-title" th:text="${totalDevolucao}"></h3>
+					</div>
+					<div class="card-footer">
+						<a th:href="@{/devolucao/listar_por_bibliotecario}">Visualizar
+							registos</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4 m-auto">
+				<div class="card card-stats">
+					<div
+						class="card-header card-header-warning
+                                card-header-icon">
+						<div class="card-icon">
+							<i class="fas fa-book fa-2x"></i>
+						</div>
+						<p class="card-category">Escolas</p>
+						<h3 class="card-title" th:text="${totalInstituicao}"></h3>
+					</div>
+					<div class="card-footer">
+						<a
+							th:href="@{/instituicaoensino/listar_instituicaoensino_por_bibliotecario}">Visualizar
+							registos</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

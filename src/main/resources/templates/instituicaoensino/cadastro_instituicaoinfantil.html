@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Área da
+								Biblioteca Infantil</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Cadastro
+							de escola</li>
+					</ol>
+
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+				<div class="row border-bottom mb-4">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-school"></i> Cadastro da escola
+						</h4>
+
+					</div>
+				</div>
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${instituicaoEnsino.id==null} ? @{/instituicaoensinoinfantil/salvar}:@{/instituicaoensinoinfantil/editar}"
+					th:object="${instituicaoEnsino}" method="post">
+
+					<div class="form-group row">
+						<label for="nomeInstituicao"
+							class="col-sm-4
+                                    col-form-label font-weight-bold">Nome
+							da escola</label>
+						<div class="col-sm-6">
+							<input required="required" type="text" id="nomeInstituicao" th:field="*{nome}"
+								class="form-control" placeholder="Insira o nome da escola"
+								th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+					</div>
+
+
+					<input type="hidden" th:field="*{id}" /> <input type="hidden"
+						th:field="*{dataRegisto}" /> <input type="hidden"
+						th:field="*{numeroEstudantes}" />
+
+					<div class="form-group">
+						<button type="submit"
+							class="btn
+                                    btn-outline-success btn-block">
+							<i class="far fa-save"></i> Salvar
+						</button>
+					</div>
+
+
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

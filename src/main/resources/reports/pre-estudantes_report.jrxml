@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pre-estudantes_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8763a6ab-7f48-47b3-bf40-85ea520f882b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="bdcentro_adapter"/>
+	<queryString language="SQL">
+		<![CDATA[select p.upr_id as id, u.ute_nome as utente, c.cur_nome as curso, p.upr_data_registo as dataRegisto from utente_pre_registo_curso as p join ute_utente as u on upr_utenteId=ute_id join cur_curso as c on upr_cursoId=cur_id;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="utente_pre_registo_curso"/>
+	</field>
+	<field name="utente" class="mz.com.centropontoencontro.domain.Utente">
+		<property name="com.jaspersoft.studio.field.label" value="utente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ute_utente"/>
+	</field>
+	<field name="curso" class="mz.com.centropontoencontro.domain.Curso">
+		<property name="com.jaspersoft.studio.field.label" value="curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cur_curso"/>
+	</field>
+	<field name="dataRegisto" class="java.time.LocalDateTime">
+		<property name="com.jaspersoft.studio.field.label" value="dataRegisto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="utente_pre_registo_curso"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement key="" x="5" y="0" width="545" height="56" forecolor="#E09900" uuid="d6c16831-cc09-48c8-9864-a9d32a6788db"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Serif" size="42"/>
+				</textElement>
+				<text><![CDATA[Centro Ponto de Encontro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="41" width="455" height="48" forecolor="#878842" uuid="c7d4668b-595f-4b13-a64f-408a3f55a818"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="Arial" size="16" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Utentes do Centro Ponto de Encontro]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="40" height="30" uuid="f1392e6c-2b49-4082-a6e2-6e7632679649">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c64bcec-4332-401f-87d7-2c5dcd3a3b2c"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="0" width="220" height="30" uuid="899e904b-71e3-4837-a9c5-b15c5ae47b8e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d19c077c-6430-4e2e-b8a3-db5dbec08b0f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do utente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="230" height="30" uuid="fa338977-df0e-45cd-bec9-55138c1c6123">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbbe00a7-9518-4fc4-838b-a714be058049"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do curso da pré-inscrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="105" height="30" uuid="730752d7-bf4b-45c4-92eb-6ebc5cd92d01">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f5c9766c-1748-4710-bb1f-0817448d244f"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data registo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="-20" y="0" width="40" height="30" uuid="01b2c1c7-48af-4c76-a1a4-8748f5cd42cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c64bcec-4332-401f-87d7-2c5dcd3a3b2c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="0" width="220" height="30" uuid="f6410cce-1638-4b1c-956c-23f67f3fe51d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d19c077c-6430-4e2e-b8a3-db5dbec08b0f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{utente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="230" height="30" uuid="202c81b0-dda1-4810-ba95-2288dd13d6db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbbe00a7-9518-4fc4-838b-a714be058049"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="105" height="30" uuid="163aa61b-0205-4b71-87c2-7c04fc3569ea">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f5c9766c-1748-4710-bb1f-0817448d244f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy hh:MM", new Locale("pt", "BR")).format($F{dataRegisto})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="100" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="40" width="100" height="30" uuid="d81febdd-1b0f-4c06-afc5-09f75d7d39f7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="40" width="100" height="30" uuid="6a55a1de-5aff-476d-b244-a09aac8663c3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy hh:mm ">
+				<reportElement x="-20" y="70" width="100" height="30" uuid="3ffe0129-67e4-4145-9a6a-70fb611bc03d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

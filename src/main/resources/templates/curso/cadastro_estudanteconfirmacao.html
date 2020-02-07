@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout_coordenador}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de
+								Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Confirmação inscrição de estudante</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							Confirmação de participação no curso
+						</h4>
+						<hr />
+					</div>
+				</div>
+				<form th:action="@{/preestudante/confirmar_estudante}" method="post"
+					th:object="${estudante}">
+					<div th:object="${preEstudante}">
+
+						<div class="form-group row">
+							<label for="txtdataregisto" class="col-sm-4 col-form-label">Data
+								de pré-registo :</label> <input type="text" id="txtdataRegisto"
+								class="form-control col-sm-5" readonly th:field="*{dataRegisto}">
+
+						</div>
+
+						<div class="form-group row">
+							<label for="txtestudante" class="col-sm-4 col-form-label">Nome
+								do Utente :</label> <input type="text" id="txtcurso"
+								class="form-control col-sm-5" readonly th:field="*{utente.nome}">
+							<input type="hidden" th:field="*{utente.id}">
+						</div>
+
+
+						<div class="form-group row">
+							<label for="txtcurso" class="col-sm-4 col-form-label">Nome
+								do curso a frequentar :</label> <input type="text" id="txtcurso"
+								class="form-control col-sm-5" readonly th:field="*{curso.nome}">
+
+							<input type="hidden" th:field="*{curso.id}">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<button type="submit" class="btn btn-outline-success">Confirmar
+							participação</button>
+						<a th:href="@{/preestudante/listar}"
+							class="btn btn-outline-danger ml-3">Cancelar participação</a>
+					</div>
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de Cursos</a></li> 
+						<li class="breadcrumb-item active" aria-current="page">Registos de Estudantes</li>
+					</ol>
+			
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos de Estudantes
+				</h4>
+
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>
+						Lista de Estudantes registados<br /> <a
+							th:href="@{/resultadoestudantes/consultar_opcoes}">Consultar
+							aprovações, reprovações e desistências de estudantes</a><br/>
+							
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome do utente</th>
+							<th>Nome do curso</th>
+							<th>Data de registo</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="e:${estudantes}" >
+							<td th:text="${e.id}">1</td>
+							<td th:text="${e.utente.nome}">Joana Francisco André</td>
+							<td th:text="${e.curso.nome}">Informática básica</td>
+							<td th:text="${#temporals.format(e.dataRegisto)}">20/10/2019</td>
+							<td><a th:href="@{/estudante/aprovar/{id} (id=${e.id})}"
+								class="btn btn-outline-success
+                                        btn-sm">Aprovado</a>
+								<a th:href="@{/estudante/desistencia/{id} (id=${e.id})}"
+								class="btn btn-outline-warning
+                                        btn-sm">Desistiu</a>
+								<a th:href="@{/estudante/reprovar/{id} (id=${e.id})}"
+								class="btn btn-outline-secondary
+                                        btn-sm">Reprovado</a>
+								<a class="btn btn-outline-info btn-sm"
+								th:href="@{/estudante/editar/{id} (id=${e.id})}"><i
+									class="fas fa-pencil-alt"></i></a>
+								<button th:id="${'btn_estudante/excluir/' + e.id}" type="button"
+									data-target="#modalExclusao" data-toggle="modal"
+									class="btn btn-outline-danger btn-sm">
+									<i class="fas fa-trash-alt"></i>
+								</button></td>
+
+						</tr>
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_gestor}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Área da
+								Biblioteca Infantil</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							de Utentes menores</li>
+
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+
+				<div class="col-sm-12 mt-n1 mb-2">
+					<h4 class="text-black-50">
+						<i class="fas fa-file-alt"></i> Registos de Utentes Menores
+					</h4>
+
+				</div>
+
+			</div>
+
+			<div class="col-sm-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>
+						Lista dos utentes menores registados<br /> <a
+							th:href="@{/obterutentesmenores_report_gestor/{formato} (formato=pdf)}"><i
+							class="far fa-clipboard"></i> Obter relatório de utentes menores
+							existentes (PDF)</a>
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Género</th>
+							<th>Naturalidade</th>
+							<th>Endereço</th>
+							<th>Encarregado</th>
+							<th>Dados Escolares</th>
+							<th>Outros Dados</th>
+							<th>Data de Registo</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="u:${utentes}">
+							<td th:text="${u.id}">1</td>
+							<td th:text="${u.nome}">Joana Lurdes</td>
+							<td th:text="${u.genero}">F</td>
+							<td th:text="${u.naturalidade}">Mocuba</td>
+							<td><button type="button"
+									class="btn
+                                        btn-outline-dark btn-sm"
+									data-toggle="popover" data-placement="right"
+									data-container="body" title="Endereço"
+									th:attr="data-content=${#strings.concat('Cidade: ', u.endereco.cidade, '; Bairro: ', u.endereco.bairro, '; Quarteirão: ', u.endereco.quarteirao)}">
+
+									<i class="far fa-eye"></i>
+								</button></td>
+							<td>
+								<button type="button"
+									class="btn
+                                        btn-outline-dark btn-sm"
+									data-toggle="popover" data-placement="right"
+									data-container="body"
+									title="Dados
+                                        Encarregado de Educação"
+									th:attr="data-content=${#strings.concat('Nome: ', u.encarregado.nome, '; Parentesco: ', u.encarregado.parentesco, '; Contacto: ', u.encarregado.contacto)}"
+									data-content="Nome Encarregado:; Grau
+                                        parentesco:; Contacto:;">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td>
+								<button type="button"
+									class="btn
+                                        btn-outline-dark btn-sm"
+									data-toggle="popover" data-placement="right"
+									data-container="body"
+									title="Dados
+                                        Escolares"
+									th:attr="data-content=${#strings.concat('Escola: ',u.instituicaoEnsinoInfantil.nome, '; Classe: ', u.classe, ' classe; Turma: ', u.turma)}">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td>
+								<button type="button"
+									class="btn
+                                        btn-outline-dark btn-sm"
+									data-toggle="popover" data-placement="right"
+									data-container="body"
+									title="Outros
+                                        Dados"
+									th:attr="data-content=${#strings.concat('NºBI: ', u.numeroBi, '; Nome pai/mãe: ', u.nomePai, '/', u.nomeMae, '; Nº de emprestimos: ', u.numeroEmprestimos)}">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td th:text="${#temporals.format(u.dataRegisto)}">20/10/2019</td>
+
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

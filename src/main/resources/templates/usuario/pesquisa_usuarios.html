@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Configurações</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							dos usuários do sistema</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos dos usuários do sistema
+				</h4>
+
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista dos Usuários do sistema<br/>
+					<a th:href="@{/usuario/cadastro}"><i class="fas fa-plus"></i> Novo usuário</a>
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome do usuário</th>
+							<th>Nivel de acesso</th>
+							<th>Data de registo</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="u:${usuarios}">
+							<td th:text="${u.id}">1</td>
+							<td th:text="${u.nomeUsuario}">userCoordenador</td>
+							<td th:text="${u.perfil.descricao}">Coordenador</td>
+							<td th:text="${#temporals.format(u.dataRegisto)}">19/10/2019</td>
+							<td><a class="btn btn-outline-info btn-sm" th:href="@{/usuario/editar/{id} (id=${u.id})}"><i
+									class="fas fa-pencil-alt"></i></a>
+								<button type="button" data-toggle="modal"
+									data-target="#modalExclusao"
+									class="btn btn-outline-danger btn-sm">
+									<i class="fas fa-trash-alt"></i>
+								</button></td>
+						</tr>
+
+					</tbody>
+
+
+				</table>
+
+			</div>
+
+
+		</div>
+	</div>
+
+</body>
+</html>

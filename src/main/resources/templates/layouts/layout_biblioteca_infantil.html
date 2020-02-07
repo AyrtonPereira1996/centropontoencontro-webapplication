@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Biblioteca Infantil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link type="text/css" rel="stylesheet" href="/_css/style.css">
+<link rel="stylesheet"
+	th:href="@{/webjars/font-awesome/5.11.2/css/font-awesome.css}">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}">
+<link rel="stylesheet" th:href="@{/webjars/datatables/css/dataTables.bootstrap4.css}">
+<link rel="shortcut icon" href="/_imgs/icon.ico" type="image/x-icon" />
+</head>
+<body>
+	<div th:replace="fragments/navbar-default :: navbar-default "></div>
+
+	<div class="layout-main">
+	
+		<div th:replace="fragments/aside-bibliotecainfantil :: aside-bibliotecainfantil"></div>
+		
+		
+		<div layout:fragment="conteudo"></div>
+
+	</div>
+	
+	<div th:replace="fragments/modalExclusao :: modalExclusao"></div>
+	<div th:replace="fragments/modalDevolucao :: modalDevolucao"></div>
+	
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.js}"></script>
+<script th:src="@{/webjars/popper.js/1.15.0/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+
+<script th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/webjars/datatables/js/dataTables.bootstrap4.min.js}"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".navbar-toggle").click(function() {
+				$(".sidebar").toggleClass("sidebar-open");
+			})
+		});
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+                });
+        
+    	var url = '';
+		$('button[id*="btn_"]').click(function() {
+			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+			console.log(url);
+		});
+		
+		$('#confirm').click(function() {	
+			document.location.href = url;
+		});
+		
+		function confirmar() {
+		    document.location.href = url;
+		}
+
+		
+        $(document).ready( function () {
+		    $('#myDataTable').DataTable({  
+		    	"autoWidth": false,
+		    	 "lengthMenu": [ 5, 10, 15, 20 ],
+		    	language:{
+		    		  "sEmptyTable":   "Não foi encontrado nenhum registo",
+		    		    "sLoadingRecords": "A carregar...",
+		    		    "sProcessing":   "A processar...",
+		    		    "sLengthMenu":   "Mostrar _MENU_ registos",
+		    		    "sZeroRecords":  "Não foram encontrados resultados",
+		    		    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registos",
+		    		    "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registos",
+		    		    "sInfoFiltered": "(filtrado de _MAX_ registos no total)",
+		    		    "sInfoPostFix":  "",
+		    		    "sSearch":       "<i class='fas fa-search'></i> Procurar:",
+		    		    "sUrl":          "",
+		    		    "oPaginate": {
+		    		        "sFirst":    "Primeiro",
+		    		        "sPrevious": "Anterior",
+		    		        "sNext":     "Seguinte",
+		    		        "sLast":     "Último"
+		    		    },
+		    		    "oAria": {
+		    		        "sSortAscending":  ": Ordenar colunas de forma ascendente",
+		    		        "sSortDescending": ": Ordenar colunas de forma descendente"
+		    		    }
+		    	},
+		    	"order": []
+		    
+		    });
+  
+		} );
+	</script>
+</body>
+</html>

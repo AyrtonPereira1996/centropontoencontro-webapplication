@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_biblioteca}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Área da
+								Biblioteca Ponto de Encontro</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							de empréstimos</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos de empréstimos
+				</h4>
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista dos empréstimos<br/>
+					<p><a th:href="@{/emprestimo/cadastro_por_bibliotecario}"><i class="fas fa-plus"></i> Novo empréstimo</a></p>
+					
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome do utente</th>
+							<th>Título do livro</th>
+							<th>Respetivos códigos</th>
+							<th>Data de registo</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="e:${emprestimos}">
+							<td th:text="${e.id}">1</td>
+							<td th:text="${e.utenteEmprestimo.nome}">Ayrton Pereira</td>
+							<td th:text="${e.livroEmprestimo.titulo}">Programação Java</td>
+							<td><button
+									class="btn btn-outline-dark
+                                        btn-sm"
+									type="button" data-toggle="popover" data-container="body"
+									data-placement="right" title="Códigos de identificação"
+									th:attr="data-content=${#strings.concat('Código de utente: ', e.utenteEmprestimo.id, ', ', 'Código de livro: ', e.livroEmprestimo.id)}">
+									<i class="far fa-eye"></i>
+								</button></td>
+							<td th:text="${#temporals.format(e.dataRegisto)}">19/10/2019</td>
+							<td><a class="btn btno btn-outline-info btn-sm"
+								th:href="@{/emprestimo/editar_por_bibliotecario/{id} (id=${e.id})}"><i
+									class="fas fa-pencil-alt"></i></a>
+
+								<button type="button" data-toggle="modal"
+									data-target="#modalDevolucao"
+									class="btn btn-outline-success btn-sm"
+									th:id="${'btn_emprestimo/excluirporbibliotecario/' + e.id}">
+									<i class="fas fa-check"></i>
+								</button></td>
+
+						</tr>
+
+
+
+
+
+					</tbody>
+
+
+				</table>
+
+			</div>
+
+
+		</div>
+	</div>
+
+</body>
+</html>

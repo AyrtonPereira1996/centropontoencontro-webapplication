@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Área da
+								Biblioteca Ponto de Encontro</a></li>
+
+						<li class="breadcrumb-item active" aria-current="page">Cadastro
+							de empréstimo</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-book-reader"></i> Cadastro de empréstimo
+						</h4>
+
+					</div>
+				</div>
+
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${emprestimo.id == null} ? @{/emprestimo/salvar}:@{/emprestimo/editar}"
+					th:object="${emprestimo}" method="post">
+					<div class="form-row">
+						<div class="form-group col-7">
+							<label for="txtutente" class="col-form-label font-weight-bold">Código
+								de utente</label> <input required="required" type="number" id="txtutente"
+								class="form-control"
+								placeholder="Insira código do utente. Ex: 130"
+								th:field="*{utenteEmprestimo.id}">
+							<div class="invalid-feedback">
+								
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-7">
+							<label for="txtlivro" class="col-form-label font-weight-bold">Código
+								do livro</label> <input required="required" type="number" id="txtlivro" class="form-control"
+								placeholder="Insira código do livro. Ex: 200"
+								th:field="*{livroEmprestimo.id}">
+							<div class="invalid-feedback">
+								
+							</div>
+						</div>
+					</div>
+
+					<input type="hidden" th:field="*{id}"> <input type="hidden"
+						th:field="*{dataRegisto}">
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-outline-success btn-block">
+							<i class="far fa-save"></i> Salvar
+						</button>
+
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

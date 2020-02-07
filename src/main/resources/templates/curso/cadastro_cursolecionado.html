@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de
+								Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							 Cadastro de
+								curso associado com formador</li>
+					</ol>
+					
+					
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-chalkboard-teacher"></i> Cadastro de curso
+							associado com formador
+						</h4>
+
+					</div>
+				</div>
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${formadorLeciona.id==null} ? @{/formadorleciona/salvar}:@{/formadorleciona/editar}"
+					th:object="${formadorLeciona}" method="post">
+					<div class="form-row">
+						<div class="form-group col-5">
+							<label for="txtformador"
+								class="col-form-label
+                                            font-weight-bold">Formador
+								a lecionar</label><select required="required" th:field="*{formador.id}" id="txtformador"
+								class="form-control"
+								th:classappend="${#fields.hasErrors('formador.id')} ? 'is-invalid'">
+								<option value="">Selecione o formador</option>
+								<option th:each="f:${formadores}" th:value="${f.id}"
+									th:text="${f.nome}">Exemplo</option>
+							</select>
+							<div class="invalid-feedback">
+								<span th:errors="*{formador.id}"></span>
+							</div>
+						</div>
+
+						<div class="form-group col-5">
+							<label for="txtcurso"
+								class="col-form-label
+                                            font-weight-bold">Curso
+								que irá lecionar</label> <select required="required" th:field="*{curso.id}" id="txtcurso"
+								class="form-control"
+								th:classappend="${#fields.hasErrors('curso.id')} ? 'is-invalid'">
+								<option value="">Selecione o curso</option>
+								<option th:each="c:${cursos}" th:value="${c.id}"
+									th:text="${c.nome}"></option>
+							</select>
+							<div class="invalid-feedback">
+								<span th:errors="*{curso.id}"></span>
+							</div>
+						</div>
+
+
+					</div>
+
+					<input type="hidden" th:field="*{id}"> <input type="hidden"
+						th:field="*{dataRegisto}">
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-outline-success btn-block">
+							<i class="far fa-save"></i> Salvar
+						</button>
+					</div>
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

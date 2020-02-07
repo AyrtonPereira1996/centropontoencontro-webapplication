@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_biblioteca_infantil}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Área da
+								Biblioteca Infantil</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Cadastro de utente menor</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-user-plus"></i> Cadastro de utente menor
+						</h4>
+					</div>
+				</div>
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${utenteMenor.id==null} ? @{/utentemenor/salvar_por_bibliotecario} : @{/utentemenor/editar_por_bibliotecario}"
+					th:object="${utenteMenor}" method="post">
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label for="txtnome"
+								class="col-form-label
+                                            font-weight-bold">Nome
+								da criança</label> <input required="required" type="text" id="txtnome" class="form-control"
+								placeholder="Insira o nome da criança" th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+						<div class="form-group ml-1">
+							<label for="txtdata"
+								class="col-form-label
+                                            font-weight-bold">Data
+								de nascimento</label> <input type="date" id="txtdata"
+								class="form-control" th:field="*{dataNascimento}"
+								th:classappend="${#fields.hasErrors('dataNascimento')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{dataNascimento}"></span>
+							</div>
+						</div>
+
+						<div class="form-group ml-2 col-sm-auto">
+							<label for="generoUtente" class="col-form-label font-weight-bold">Género
+								do utente</label> <select required="required" class="form-control" id="generoUtente"
+								th:field="*{genero}">
+								<option value="">Selecione género</option>
+								<option value="M">Masculino</option>
+								<option value="F">Femenino</option>
+							</select>
+						</div>
+
+					</div>
+
+					<div class="form-row ">
+						<div class="form-group mr-1">
+							<label for="txtnaturalidade"
+								class="col-form-label
+                                            font-weight-bold">Naturalidade</label>
+							<input required="required" type="text" id="txtnaturalidade" class="form-control"
+								placeholder="Insira a naturalidade" th:field="*{naturalidade}"
+								th:classappend="${#fields.hasErrors('naturalidade')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{naturalidade}"></span>
+							</div>
+						</div>
+
+						<div class="form-group mr-1">
+							<label for="txtbi"
+								class="col-form-label
+                                            font-weight-bold">Nº
+								Bilhete de Identidade</label> <input type="text" id="txtbi"
+								class="form-control" placeholder="Insira nº do documento"
+								maxlength="13" th:field="*{numeroBi}"
+								th:classappend="${#fields.hasErrors('numeroBi')} ? 'is-invalid'" />
+							<div class="invalid-feedback">
+								<span th:errors="*{naturalidade}"></span>
+							</div>
+
+						</div>
+
+						<div class="form-group mr-1">
+							<label for="txtpai"
+								class="col-form-label
+                                            font-weight-bold">Nome
+								do pai</label> <input type="text" id="txtpai" class="form-control"
+								placeholder="Insira o nome do pai" th:field="*{nomePai}"
+								th:classappend="${#fields.hasErrors('nomePai')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{nomePai}"></span>
+							</div>
+						</div>
+
+						<div class="form-group mr-1">
+							<label for="txtmae"
+								class="col-form-label
+                                            font-weight-bold">Nome
+								da mãe</label> <input type="text" id="txtmae" class="form-control"
+								placeholder="Insira o nome da mãe" th:field="*{nomeMae}"
+								th:classappend="${#fields.hasErrors('encarregado.nome')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{encarregado.nome}"></span>
+							</div>
+						</div>
+
+						<div class="form-group mr-1">
+							<label for="txtencarregado"
+								class="col-form-label
+                                            font-weight-bold">Nome
+								do encarregado de educação</label> <input required="required" type="text"
+								id="txtencarregado" class="form-control"
+								placeholder="Insira nome do encarregado"
+								th:field="*{encarregado.nome}">
+							<div class="invalid-feedback"></div>
+						</div>
+						<div class="form-group mr-1">
+							<label for="txtparentesco"
+								class="col-form-label
+                                            font-weight-bold">Grau
+								de parentesco</label> <select required="required" name=""
+								th:field="*{encarregado.parentesco}" id="txtparentesco"
+								class="form-control">
+								<option value="">Grau de parentesco</option>
+								<option value="Pai">Pai</option>
+								<option value="Mãe">Mãe</option>
+								<option value="Tio">Tio</option>
+								<option value="Tia">Tia</option>
+								<option value="Avô">Avô</option>
+								<option value="Avó">Avó</option>
+								<option value="Outro">Outro</option>
+							</select>
+							<div class="invalid-feedback"></div>
+						</div>
+
+						<div class="form-group mr-1">
+							<label for="txt-contacto-encarregado"
+								class="col-form-label
+                                                font-weight-bold">Contacto
+								de encarregado</label> <input type="text" id="txt-contacto-encarregado"
+								class="form-control" placeholder="Nº Telemóvel"
+								th:field="*{encarregado.contacto}"
+								th:classappend="${#fields.hasErrors('encarregado.contacto')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{encarregado.contacto}"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="txtinstituicaoensino"
+								class="col-form-label font-weight-bold">Instituição de
+								ensino</label> <select required="required" th:field="*{instituicaoEnsinoInfantil}"
+								id="txtinstituicaoensino" class="form-control"
+								th:classappend="${#fields.hasErrors('instituicaoEnsinoInfantil')} ? 'is-invalid'">
+								<option value="">Selecione a instituição</option>
+								<option th:each="i: ${instituicoes}" th:value="${i.id}"
+									th:text="${i.nome}">Opção A</option>
+							</select>
+							<div class="invalid-feedback">
+								<span th:errors="*{instituicaoEnsinoInfantil}"></span>
+							</div>
+						</div>
+
+						<div class="form-group col-1">
+							<label for="txtclasse" class="col-form-label font-weight-bold">Classe</label>
+							<input type="text" id="txtclasse" class="form-control"
+								placeholder="Classe" th:field="*{classe}"
+								th:classappend="${#fields.hasErrors('classe')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{classe}"></span>
+							</div>
+						</div>
+						<div class="form-group mr-1 col-1">
+							<label for="txtturma" class="col-form-label font-weight-bold">Turma</label>
+							<input type="text" id="txtturma" class="form-control"
+								placeholder="Turma" th:field="*{turma}"
+								th:classappend="${#fields.hasErrors('turma')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{turma}"></span>
+							</div>
+						</div>
+
+						<div class="form-group mr-1">
+							<label for="txtcidade" class="col-form-label font-weight-bold">Cidade</label>
+							<input type="text" id="txtcidade" class="form-control"
+								placeholder="Cidade em que reside" th:field="*{endereco.cidade}"
+								th:classappend="${#fields.hasErrors('endereco.cidade')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{endereco.cidade}"></span>
+							</div>
+						</div>
+						<div class="form-group mr-1">
+							<label for="txtbairro" class="col-form-label font-weight-bold">Bairro</label>
+							<input type="text" id="txtbairro" class="form-control"
+								placeholder="Bairro em que reside" th:field="*{endereco.bairro}"
+								th:classappend="${#fields.hasErrors('endereco.bairro')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{endereco.bairro}"></span>
+							</div>
+						</div>
+						<div class="form-group mr-1">
+							<label for="txtquarteirao"
+								class="col-form-label font-weight-bold">Quarteirão</label> <input
+								type="text" id="txtquarteirao" class="form-control"
+								placeholder="Quarteirão" th:field="*{endereco.quarteirao}"
+								th:classappend="${#fields.hasErrors('endereco.quarteirao')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{endereco.quarteirao}"></span>
+							</div>
+						</div>
+
+					</div>
+
+
+
+					<input type="hidden" th:field="*{dataRegisto}"> <input
+						type="hidden" th:field="*{id}"> <input type="hidden"
+						th:field="*{numeroEmprestimos}">
+
+					<div class="form-row">
+						<div class="form-group">
+							<button type="submit"
+								class="btn
+                                                btn-outline-success ">
+								<i class="far fa-save"></i> Salvar
+							</button>
+						</div>
+					</div>
+
+
+
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<aside th:fragment="aside-gestor" class="mt-5">
+                <nav class="sidebar sidebar-open">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/area/areagestor}"><i
+                                    class="fas fa-home"></i> Home</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav nav-pills d-inline-block">
+                        &nbsp;<span class="text-muted sidebar-heading"><i class="fas
+                                fa-angle-right"></i> Área da
+                            Biblioteca Ponto de Encontro</span>
+                        <li>
+                            <a href="#consultas-1" data-toggle="collapse"
+                                aria-expanded="false" class="dropdown-toggle"><i
+                                    class="fas fa-search"></i> Consultar</a>
+                            <ul id="consultas-1" class="collapse">
+                                <li><a th:href="@{/livro/listar_por_gestor}"><i
+                                            class="fas fa-book"></i> Acervo de
+                                        livros</a></li>
+
+                                <li><a th:href="@{/utente/listar_por_gestor}"><i class="fas
+                                            fa-users"></i> Utentes registados</a></li>
+                                <li><a th:href="@{/livro/listar_numeropedidos_por_gestor}"><i
+                                            class="fas fa-book"></i> Livros mais
+                                        solicitados</a></li>
+                                <li><a th:href="@{/utente/listar_numeroemprestimos_por_gestor}"><i class="fas
+                                            fa-users"></i> Utentes que mais
+                                        solicitam</a></li>
+                                <li><a th:href="@{/categorialivro/listar_por_gestor}"><i
+                                            class="fas fa-book"></i> Categorias
+                                        de livros</a></li>
+
+                                <li><a th:href="@{/instituicaoensino/listar_instituicaoensino_por_gestor}"><i
+                                            class="fas fa-school"></i>
+                                        Instituições de ensino</a></li>
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav nav-pills d-inline-block">
+                        &nbsp;<span class="text-muted sidebar-heading"><i class="fas
+                                fa-angle-right"></i> Área da
+                            Biblioteca Infantil</span>
+                        <li>
+                            <a href="#consultas-2" data-toggle="collapse"
+                                aria-expanded="false" class="dropdown-toggle"><i
+                                    class="fas fa-search"></i> Consultar</a>
+                            <ul id="consultas-2" class="collapse">
+                                <li><a th:href="@{/livroinfantil/listar_por_gestor}"><i
+                                            class="fas fa-book"></i> Acervo de
+                                        livros</a></li>
+                                <li><a th:href="@{/utentemenor/listar_por_gestor}"><i
+                                            class="fas fa-users"></i> Utentes
+                                        menores registados</a></li>
+                                <li><a th:href="@{/livroinfantil/listar_numeropedidos_gestor}"><i
+                                            class="fas fa-book"></i> Livros mais
+                                        solicitados</a></li>
+                                <li><a th:href="@{/utentemenor/listar_numeroemprestimos_por_gestor}"><i class="fas
+                                            fa-users"></i>Utentes que mais
+                                        solicitam</a></li>
+                                <li><a
+                                        th:href="@{/instituicaoensinoinfantil/listar_por_gestor}"><i
+                                            class="fas fa-school"></i> Escolas</a></li>
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav nav-pills d-inline-block">
+                        &nbsp;<span class="text-muted sidebar-heading"><i class="fas
+                                fa-angle-right"></i> Serviço de
+                            cursos</span>
+                        <li>
+                            <a href="#consultas-3" data-toggle="collapse"
+                                aria-expanded="false" class="dropdown-toggle"><i
+                                    class="fas fa-search"></i> Consultar</a>
+                            <ul id="consultas-3" class="collapse">
+                                <li><a th:href="@{/curso/listar_por_gestor}"><i class="fas
+                                            fa-file-alt"></i>
+                                        Cursos</a></li>
+                                <li><a th:href="@{/estudantesaprovacao/listar_por_gestor}"><i
+                                            class="fas fa-user-graduate"></i>
+                                        Estudantes que aprovaram</a></li>
+                                <li><a th:href="@{/estudantesreprovacao/listar_por_gestor}"><i
+                                            class="fas fa-user-graduate"></i>
+                                        Estudantes que reprovaram</a></li>
+                                <li><a th:href="@{/estudantesdesistiram/listar_por_gestor}"><i
+                                            class="fas fa-user-graduate"></i>
+                                        Estudantes que desistiram</a></li>
+
+                                <li><a th:href="@{/formador/listar_por_gestor}"><i
+                                            class="fas fa-user-tie"></i>
+                                        Formadores</a></li>
+                                <li><a th:href="@{/formadorleciona/listar_por_gestor}"><i
+                                            class="fas
+                                            fa-chalkboard-teacher"></i> Cursos
+                                        associados aos formadores</a></li>
+                            </ul>
+
+                        </li>
+
+                    </ul>
+                </nav>
+            </aside>
+
+</body>
+</html>

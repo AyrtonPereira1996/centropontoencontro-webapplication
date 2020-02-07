@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Área da
+								biblioteca Ponto de Encontro</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Cadastro de livro</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-book"></i> Cadastro de livro
+						</h4>
+
+					</div>
+				</div>
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${livro.id == null} ? @{/livro/salvar}:@{/livro/editar}"
+					th:object="${livro}" method="post">
+					<div class="form-row">
+						<div class="form-group col-9">
+							<label for="txttitulo" class="col-form-label font-weight-bold">Titulo
+								do livro</label> <input required="required" type="text" id="txttitulo" class="form-control"
+								placeholder="Insira o titulo do livro" th:field="*{titulo}"
+								th:classappend="${#fields.hasErrors('titulo')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{titulo}"></span>
+							</div>
+						</div>
+						<div class="form-group col-auto">
+							<label for="txtcategoria" class="col-form-label font-weight-bold">Categoria</label><br />
+							<select required="required" th:field="*{categoria.id}" id="txtcategoria"
+								class="form-control"
+								th:classappend="${#fields.hasErrors('categoria.id')} ? 'is-invalid'">
+								<option value="">Escolha a categoria</option>
+								<option th:each="c:${categorias}" class="form-control"
+									th:value="${c.id}" th:text="${c.familia}+' | '+${c.cdd}">Categoria
+									B</option>
+
+							</select>
+							<div class="invalid-feedback">
+								<span th:errors="*{categoria.id}"></span>
+							</div>
+
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-12">
+							<label for="txtautor" class="col-form-label font-weight-bold">Autor
+								do livro</label> <input required="required" th:field="*{autor}" type="text" id="txtautor"
+								class="form-control"
+								placeholder="Insira o autor do livro. Caso tenha mais que um autor separe por vírgula. Ex: Autor x, Autor y..."
+								th:classappend="${#fields.hasErrors('autor')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{autor}"></span>
+							</div>
+						</div>
+
+					</div>
+					<div class="form-row">
+						<div class="form-group ml-1">
+							<label for="txtedicao" class="col-form-label font-weight-bold">Nº
+								edição </label> <input type="text" class="form-control" id="txtedicao"
+								placeholder="Edição nº" th:field="*{edicao}"
+								th:classappend="${#fields.hasErrors('edicao')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{edicao}"></span>
+							</div>
+						</div>
+						<div class="form-group ml-1">
+							<label for="txtano" class="col-form-label font-weight-bold">Ano
+								edição </label> <input type="number" class="form-control" id="txtano"
+								placeholder="Ano" th:field="*{anoEdicao}"
+								th:classappend="${#fields.hasErrors('anoEdicao')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{anoEdicao}"></span>
+							</div>
+						</div>
+
+						<div class="form-group ml-1">
+							<label for="txteditora" class="col-form-label font-weight-bold">Editora</label>
+							<input required="required" type="text" class="form-control" id="txteditora"
+								placeholder="Insira a editora do livro" th:field="*{editora}"
+								th:classappend="${#fields.hasErrors('editora')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{editora}"></span>
+							</div>
+						</div>
+						<div class="form-group ml-1">
+							<label for="txteisbn" class="col-form-label font-weight-bold">ISBN</label>
+							<input type="text" class="form-control" id="txtisbn"
+								placeholder="Insira o ISBN do livro" th:field="*{isbn}"
+								maxlength="13" data-mask="###-###-###-###-#"
+								data-mask-reverse="true"
+								th:classappend="${#fields.hasErrors('isbn')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{isbn}"></span>
+							</div>
+						</div>
+					</div>
+
+					<input type="hidden" th:field="*{id}"> <input type="hidden"
+						th:field="*{dataRegisto}"> <input type="hidden"
+						th:field="*{numeropedidos}">
+
+					<div class="form-row">
+						<div class="form-group">
+							<button type="submit" class="btn btn-outline-success">
+								<i class="far fa-save"></i> Salvar
+							</button>
+						</div>
+
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

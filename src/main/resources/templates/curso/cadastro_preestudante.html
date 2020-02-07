@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Cadastro de estudante</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+
+			<div class="col-sm-12 pl-4">
+
+				<div class="row border-bottom">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+							<i class="fas fa-user-plus"></i> Cadastro de estudante
+						</h4>
+					</div>
+				</div>
+				<div th:replace="fragments/alerts"></div>
+				<form
+					th:action="${preEstudante.id==null} ? @{/preestudante/salvar}:@{/preestudante/editar}"
+					th:object="${preEstudante}" method="post">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="txtestudante" class="col-form-label font-weight-bold">Código
+								de utente</label> <input required="required" type="text" id="txtestudante"
+								class="form-control" placeholder="Insira código de utente"
+								th:field="*{utente.id}"
+								th:classappend="${#fields.hasErrors('utente.id')} ? 'is-invalid'">
+							<div class="invalid-feedback">
+								<span th:errors="*{utente.id}"></span>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="txtcurso" class="col-form-label font-weight-bold">Curso
+								a frequentar</label> <select required="required" id="txtcurso" class="form-control"
+								th:field="*{curso.id}"
+								th:classappend="${#fields.hasErrors('curso.id')} ? 'is-invalid'">
+								<option value="">Selecione o curso</option>
+								<option th:each="c:${cursos}" th:value="${c.id}"
+									th:text="${c.nome}">Curso A</option>
+							</select>
+							<div class="invalid-feedback">
+								<span th:errors="*{curso.id}"></span>
+							</div>
+						</div>
+					</div>
+
+
+					<input type="hidden" th:field="*{id}"> <input type="hidden"
+						th:field="*{dataRegisto}">
+					<div class="form-row">
+						<div class="form-group">
+							<button type="submit" class="btn btn-outline-success">
+								<i class="far fa-save"></i> Salvar
+							</button>
+						</div>
+					</div>
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

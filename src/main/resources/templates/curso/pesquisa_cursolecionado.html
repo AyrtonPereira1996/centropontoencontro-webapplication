@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_coordenador}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de
+								Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							dos cursos a serem lecionados</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos dos cursos a serem
+					lecionados
+				</h4>
+
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista dos cursos a serem lecionados<br/>
+					<a th:href="@{/formadorleciona/cadastro}"><i class="fas fa-plus"></i> Nova associação de formador a um curso</a>
+					&nbsp; | &nbsp; <a th:href="@{/obterformadoreslecionam_report/{formato} (formato = pdf)}"><i class="far fa-clipboard"></i> Obter relatório de associações de formadores aos cursos disponíveis (PDF)</a>					
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome do formador</th>
+							<th>Nome do curso</th>
+							<th>Data de inicio</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="f:${formadores}">
+							<td th:text="${f.id}">1</td>
+							<td th:text="${f.formador.nome}"></td>
+							<td th:text="${f.curso.nome}"></td>
+							<td th:text="${#temporals.format(f.dataRegisto)}">20/10/2019</td>
+							<td><a class="btn btn-outline-info btn-sm"
+								th:href="@{/formadorleciona/editar/{id} (id=${f.id})}"><i
+									class="fas fa-pencil-alt"></i></a>
+								<button type="button"
+									th:id="${'btn_formadorleciona/excluir/' + f.id}"
+									data-toggle="modal" data-target="#modalExclusao"
+									class="btn btn-outline-danger btn-sm">
+									<i class="fas fa-trash-alt"></i>
+								</button></td>
+
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

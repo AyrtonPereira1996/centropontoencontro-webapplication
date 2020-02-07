@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout_coordenador}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de
+								Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Confirmação de reprovação de estudante</li>
+					</ol>
+
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-10">
+				<div class="row">
+					<div class="col-sm-12 mt-n1 mb-2">
+						<h4 class="text-black-50">
+
+							Confirmação de reprovação
+						</h4>
+						<hr />
+					</div>
+				</div>
+				<form th:action="@{/estudante/reprovar}"
+					th:object="${estudanteReprovado}" method="post">
+
+					<div th:object="${estudante}">
+						<div class="form-group row">
+							<label for="txtdata" class="col-sm-4 col-form-label">Data
+								de confirmação do estudante</label> <input th:field="*{dataRegisto}"
+								type="text" id="txtdata" class="form-control col-sm-3" readonly>
+
+						</div>
+
+
+						<div class="form-group row">
+							<label for="txtestudante" class="col-sm-4 col-form-label">Nome
+								do estudante</label> <input th:field="*{utente.nome}" type="text"
+								id="txtestudante" class="form-control col-sm-5" readonly>
+							<input th:field="*{utente.id}" type="hidden" readonly>
+						</div>
+
+
+						<div class="form-group row">
+							<label for="txtcurso" class="col-sm-4 col-form-label">Nome
+								do curso que frequentou</label> <input th:field="*{curso.nome}"
+								type="text" id="txtcurso" class="form-control col-sm-5" readonly>
+							<input th:field="*{curso.id}" type="hidden" readonly>
+						</div>
+
+					</div>
+
+					<div th:object="${estudanteReprovado}">
+
+						<div class="form-group row">
+							<label for="txtnota" class="col-sm-4 col-form-label">Nota
+								de aprovação</label> <input required="required" type="text" id="txtnota"
+								class="form-control col-sm-2" th:field="*{notaFinal}">
+						</div>
+
+
+
+						<div class="form-group row">
+							<label for="txtnota" class="col-sm-4 col-form-label">Comentários</label>
+							<textarea id="txtnota" cols="15" rows="5"
+								class="form-control col-sm-5" th:field="*{comentario}"></textarea>
+						</div>
+
+					</div>
+
+
+					<div class="form-group row">
+						<button type="submit" class="btn btn-outline-success">Concluir
+							reprovação</button>
+						<a th:href="@{/estudante/listar}" class="btn btn-outline-danger ml-3">Cancelar
+							reprovação</a>
+					</div>
+
+				</form>
+
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

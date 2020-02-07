@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_gestor}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}"> Área da
+								Biblioteca Ponto de Encontro</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							do acervo de livros</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos do Acervo de Livros
+				</h4>
+
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista dos livros disponíveis<br /> 
+					<a th:href="@{/obterlivros_report_gestor/{formato} (formato = pdf)}"><i class="far fa-clipboard"></i> Obter livros existentes (PDF)</a>
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Titulo</th>
+							<th>Autor</th>
+							<th>Editora</th>
+							<th>Familia</th>
+							<th>Outros dados</th>
+							<th>Data de registo</th>
+
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="l:${livros}">
+							<td th:text="${l.id}">1</td>
+							<td th:text="${l.titulo}">Programação Java</td>
+							<td th:text="${l.autor}">Pedro Coelho</td>
+							<td th:text="${l.editora}">FCA</td>
+							<td th:text="${l.categoria.familia}">Informática Programação</td>
+							<td>
+								<button type="button" data-toggle="popover"
+									data-container="body" data-placement="right"
+									title="Outros dados"
+									th:attr="data-content=${#strings.concat('CDD: ', l.categoria.cdd, '; Nº edição: ', l.edicao, 'º; Ano edição: ', l.anoEdicao, '; ISBN: ', l.isbn)}"
+									class="btn btn-outline-dark btn-sm">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td th:text="${#temporals.format(l.dataRegisto)}"></td>
+
+
+						</tr>
+
+
+
+
+
+					</tbody>
+
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_gestor}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de
+								Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos
+							dos cursos a serem lecionados</li>
+					</ol>
+
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos dos cursos a serem
+					lecionados
+				</h4>
+
+			</div>
+
+			<div class="col-12">
+				<div th:replace="fragments/alerts"></div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>
+						Lista dos cursos a serem lecionados<br /> <a th:href="@{/obterformadoreslecionam_report_gestor/{formato} (formato=pdf)}"><i
+							class="far fa-clipboard"></i> Obter relatório de associações de
+							formadores aos cursos disponíveis (PDF)</a>
+
+					</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome do formador</th>
+							<th>Nome do curso</th>
+							<th>Data de inicio</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="f:${formadores}">
+							<td th:text="${f.id}">1</td>
+							<td th:text="${f.formador.nome}"></td>
+							<td th:text="${f.curso.nome}"></td>
+							<td th:text="${#temporals.format(f.dataRegisto)}">20/10/2019</td>
+
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

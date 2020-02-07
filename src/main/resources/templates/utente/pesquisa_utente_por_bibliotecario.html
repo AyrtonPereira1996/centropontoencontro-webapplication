@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html layout:decorate="~{/layouts/layout_biblioteca}">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item" aria-current="page"> <a th:href="@{#}">Área
+							da Biblioteca Ponto de Encontro</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Registos de Utentes</li>
+
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+
+			<div class="col-sm-12 mt-n1 mb-2">
+				<h4 class="text-black-50">
+					<i class="fas fa-file-alt"></i> Registos de Utentes
+				</h4>
+			</div>
+
+			<div class="col-sm-12">
+				<table class="table table-hover table-sm" id="myDataTable">
+					<caption>Lista dos utentes registados</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Género</th>
+							<th>Naturalidade</th>
+							<th>Contato</th>
+							<th>Endereço</th>
+							<th>Outros dados</th>
+							<th>Estado</th>
+							<th>Data de Registo</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="u:${utentes}">
+							<td th:text="${u.id}">1</td>
+							<td th:text="${u.nome}">Joaquim Hernesto Silva</td>
+							<td th:text="${u.genero}">M</td>
+							<td th:text="${u.naturalidade}">Quelimane</td>
+							<td th:text="${u.contacto}">847079623</td>
+							<td>
+								<button type="button" data-toggle="popover"
+									data-placement="right" data-container="body"
+									th:attr="data-content=${#strings.concat('Cidade: ', u.endereco.cidade, '; bairro: ', u.endereco.bairro, '; quarteirão: ', u.endereco.quarteirao)}"
+									class="btn btn-sm btn-outline-dark">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td>
+								<button type="button" data-toggle="popover"
+									data-placement="bottom" data-container="body"
+									th:attr="data-content=${#strings.concat('Data de nascimento: ',u.dataNascimento, '; NºBI: ', u.numeroBi, '; Nome pai/mãe: ', u.nomePai, '/', u.nomeMae, '; Nº emprestimos: ', u.numeroEmprestimos, '; instituição de ensino: ', u.instituicaoEnsino.nome )}"
+									title="Outros Dados"
+									class="btn btn-sm
+                                        btn-outline-dark">
+									<i class="far fa-eye"></i>
+								</button>
+							</td>
+							<td th:text="${u.estado}">Permitido</td>
+							<td th:text="${#temporals.format(u.dataRegisto)}">19/10/2019</td>
+							<td><a class="btn btn-outline-warning btn-sm" href="#"><i
+									class="far fa-id-card"></i></a> <a
+								class="btn btn-outline-info btn-sm"
+								th:href="@{/utente/editar_por_bibliotecario/{id} (id=${u.id})}"><i
+									class="fas fa-pencil-alt"></i></a></td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+
+</body>
+</html>

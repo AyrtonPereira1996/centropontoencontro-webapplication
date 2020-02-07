@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<aside class="mt-5" th:fragment="aside-coordenador">
+		<nav class="sidebar sidebar-open">
+			<ul class="nav nav-pills">
+				<li class="nav-item"><a class="nav-link"
+					href="/area/areacoordenador"><i class="fas fa-home"></i> Home</a></li>
+			</ul>
+
+			<ul class="nav nav-pills d-inline-block">
+				&nbsp;
+				<span class="text-muted sidebar-heading"><i
+					class="fas fa-angle-right"></i> Área da Biblioteca Ponto de
+					Encontro</span>
+				<li><a href="#consultas-1" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="fas fa-search"></i> Consultar</a>
+					<ul id="consultas-1" class="collapse">
+						<li><a th:href="@{/emprestimo/listar}"><i
+								class="fas fa-book-reader"></i> Empréstimos</a></li>
+						<li><a th:href="@{/devolucao/listar}"><i
+								class="fas fa-paper-plane"></i> Devoluções</a></li>
+						<li><a th:href="@{/livro/listar}"><i class="fas fa-book"></i> Acervo de
+								livros</a></li>
+						<li><a th:href="@{/categorialivro/listar}"><i
+								class="fas fa-book"></i> Categoria de livros</a></li>
+						<li><a th:href="@{/utente/listar}"><i class="fas fa-users"></i> Utentes</a></li>
+						<li><a th:href="@{/instituicaoensino/listar_instituicaoensino}"><i class="fas fa-school"></i>
+								Instituições de ensino</a></li>
+					</ul></li>
+				<li><a href="#cadastros-1" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="far fa-plus-square"></i> Cadastrar</a>
+					<ul id="cadastros-1" class="collapse">
+						<li><a th:href="@{/emprestimo/cadastro}"><i
+								class="fas fa-book-reader"></i> Empréstimo</a></li>
+						<li><a th:href="@{/utente/cadastro}"><i
+								class="fas fa-user-plus"></i> Utente</a></li>
+						<li><a th:href="@{/livro/cadastro}"><i class="fas fa-book"></i>
+								Livro</a></li>
+						<li><a th:href="@{/categorialivro/cadastro}"><i
+								class="fas fa-book"></i> Categoria de livro</a></li>
+						<li><a th:href="@{/instituicaoensino/cadastro_instituicao}"><i
+								class="fas fa-school"></i> Instituição de ensino</a></li>
+					</ul></li>
+			</ul>
+
+			<ul class="nav nav-pills d-inline-block">
+				&nbsp;
+				<span class="text-muted sidebar-heading"><i
+					class="fas fa-angle-right"></i> Área da Biblioteca Infantil</span>
+				<li><a href="#consultas-2" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="fas fa-search"></i> Consultar</a>
+					<ul id="consultas-2" class="collapse">
+						<li><a th:href="@{/emprestimoinfantil/listar}"><i class="fas fa-book-reader"></i>
+								Empréstimos</a></li>
+						<li><a th:href="@{/devolucaoinfantil/listar}"><i class="fas fa-paper-plane"></i>
+								Devoluções</a></li>
+						<li><a th:href="@{/livroinfantil/listar}"><i class="fas fa-book"></i> Acervo de
+								livros</a></li>
+						<li><a th:href="@{/utentemenor/listar}"><i class="fas fa-users"></i> Utentes
+								menores</a></li>
+						<li><a th:href="@{/instituicaoensinoinfantil/listar}"><i class="fas fa-school"></i> Escolas</a></li>
+					</ul></li>
+				<li><a href="#cadastros-2" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="far fa-plus-square"></i> Cadastrar</a>
+					<ul id="cadastros-2" class="collapse">
+						<li><a th:href="@{/emprestimoinfantil/cadastro}"><i
+								class="fas fa-book-reader"></i> Empréstimo</a></li>
+						<li><a th:href="@{/utentemenor/cadastro}"><i
+								class="fas fa-user-plus"></i> Utente menor</a></li>
+						<li><a th:href="@{/livroinfantil/cadastro}"><i
+								class="fas fa-book"></i> Livro</a></li>
+						<li><a
+							href="/instituicaoensinoinfantil/cadastro_instituicaoinfantil"><i
+								class="fas fa-school"></i> Escola</a></li>
+					</ul></li>
+			</ul>
+
+			<ul class="nav nav-pills d-inline-block ">
+				&nbsp;
+				<span class="text-muted sidebar-heading"><i
+					class="fas fa-angle-right"></i> Serviço de cursos</span>
+				<li><a href="#consultas-3" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="fas fa-search"></i> Consultar</a>
+					<ul id="consultas-3" class="collapse">
+						<li><a th:href="@{/curso/listar}"><i class="fas fa-file-alt"></i> Cursos</a></li>
+						<li><a th:href="@{/preestudante/listar}"><i class="fas fa-user-graduate"></i> Pré-registos de estudantes</a></li>
+						<li><a th:href="@{/estudante/listar}"><i class="fas fa-user-graduate"></i> Estudantes confirmados</a></li>
+						<li><a th:href="@{/resultadoestudantes/consultar_opcoes}"><i class="fas fa-user-graduate"></i> Aprovações, reprovações e desistências</a></li>
+						<li><a th:href="@{/formador/listar}"><i class="fas fa-user-tie"></i> Formadores</a></li>
+						<li><a th:href="@{/formadorleciona/listar}"><i class="fas fa-chalkboard-teacher"></i> Cursos associados aos formadores</a></li>
+						
+					</ul></li>
+				<li><a href="#cadastros-3" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"><i
+						class="far fa-plus-square"></i> Cadastrar</a>
+					<ul id="cadastros-3" class="collapse">
+						<li><a th:href="@{/curso/cadastro}"><i class="fas fa-file-alt"></i>
+								Curso</a></li>
+						<li><a th:href="@{/preestudante/cadastro}"><i
+								class="fas fa-user-plus"></i> Estudante</a></li>
+						<li><a th:href="@{/formador/cadastro}"><i
+								class="fas fa-chalkboard-teacher"></i> Formador</a></li>
+						<li><a th:href="@{/formadorleciona/cadastro}"><i
+								class="fas fa-chalkboard-teacher"></i> Curso a ser lecionado por</a></li>
+					</ul></li>
+			</ul>
+		</nav>
+	</aside>
+</body>
+</html>

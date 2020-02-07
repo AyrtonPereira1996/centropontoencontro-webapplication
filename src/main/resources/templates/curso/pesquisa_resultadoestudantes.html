@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/layout_coordenador}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div layout:fragment="conteudo" class="container-fluid">
+		<div class="row my-2">
+			<div class="col-sm-12" style="margin-top: 50px;">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb" style="background-color: white;">
+						<li class="breadcrumb-item"><a th:href="@{#}">Serviço de Cursos</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Consulta
+							de aprovações, reprovações e desistências</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-sm-12 pl-4">
+
+				<ul class="list-group list-group-flush">
+					<span class="text-muted list-group-item"><i
+						class="fas fa-angle-right"></i> Escolha o que deseja consultar</span>
+					<li class="list-group-item list-group-item-action"><a
+						th:href="@{/estudantesaprovacao/listar}"> Consultar estudantes
+							aprovados</a></li>
+					<li class="list-group-item list-group-item-action"><a
+						th:href="@{/estudantesreprovacao/listar}"> Consultar
+							estudantes reprovados</a></li>
+					<li class="list-group-item list-group-item-action"><a
+						th:href="@{/estudantesdesistiram/listar}"> Consultar
+							estudantes que desistiram</a></li>
+
+				</ul>
+
+
+
+			</div>
+		</div>
+
+
+
+	</div>
+</body>
+</html>
